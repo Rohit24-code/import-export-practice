@@ -1,0 +1,36 @@
+#navbar{
+
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid black;
+    align-items: center;
+
+}
+
+#navbar div a{
+margin-right: 15px;
+}
+
+#form{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    gap: 10px;
+}
+#icontainer{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: auto;
+    gap: 10px;
+    text-align: center;
+    justify-content: center;
+}
+#icontainer img{
+    height: 380px;
+    width: 380px;
+    text-align: center;
+}
+
+#box{
+    text-align: center;
+}

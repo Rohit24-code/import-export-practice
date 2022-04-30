@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="navbar"></div>
+    <form >
+        <input type="text"  id="name" placeholder="Name">
+        <input type="email"  id="email" placeholder="Email">
+        <input type="password"  id="password" placeholder="password">
+        <input type="text"  id="username" placeholder="UserName">
+        <input type="number"  id="mobile" placeholder="Mobile">
+        <input type="text"  id="description" placeholder="Description">
+        <button id="btn">Submit</button>
+    </form>
+</body>
+</html>
+
+<script type="module">
+    let myuser;
+import {nav} from "./components/nav.js"
+document.getElementById("navbar").innerHTML=nav()
+
+
+//made async because we will get a promise
+ myuser = async (e)=>{
+    e.preventDefault()
+//geting the values from input tags
+    let form_data ={
+        name:document.getElementById("name").value,
+        email:document.getElementById("email").value,
+        password:document.getElementById("password").value,
+        username:document.getElementById("username").value,
+        mobile:document.getElementById("mobile").value,
+        description:document.getElementById("description").value
+    }
+   //we are stringfing it bcs we need to make a post request .
+    form_data= JSON.stringify(form_data);
+
+    let res = await fetch("https://masai-api-mocker.herokuapp.com/auth/register",{
+        method:"POST",
+        body: form_data,
+//header is their so that we can tell the server what are we sending and dont make spelling mistakes
+        headers:{
+            "Content-Type":"application/json",
+        }
+
+    });
+
+    let data= await res.json()
+    console.log(data)
+
+}
+
+document.getElementById("btn").addEventListener("click",myuser)
+</script>
